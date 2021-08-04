@@ -4,7 +4,7 @@
   "description": "starter point to create new line bot project",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "node index.js"
   },
   "keywords": [
     "line",
