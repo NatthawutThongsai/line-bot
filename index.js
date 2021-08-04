@@ -4107,7 +4107,7 @@ function handleSticker(message, replyToken) {
   return replyText(replyToken, 'Got Sticker');
 }
 
-const port = config.port;
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Server is runing at port: ${port}`);
 });
