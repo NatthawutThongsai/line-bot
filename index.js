@@ -280,16 +280,17 @@ async function searchPrice(search){
   
 }
 app.get('/',(req,res)=>{
-  var search = "ada";
-  var results = searchPrice(search);
-  results.then(function(result){
-    console.log(result)
-    if(results){
-      res.send('not found')
-    }
-    res.send(result.quote.USD.price.toString())
-  })
-  console.log('results')
+  res.send('heroku');
+  // var search = "ada";
+  // var results = searchPrice(search);
+  // results.then(function(result){
+  //   console.log(result)
+  //   if(results){
+  //     res.send('not found')
+  //   }
+  //   res.send(result.quote.USD.price.toString())
+  // })
+  // console.log('results')
   // res.send(results[0])
     
 });
