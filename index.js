@@ -49,7 +49,7 @@ async function searchPrice(search){
 //   });
 // });
 app.get('/',(req,res)=>{
-  res.send('heroku');
+  res.send('heroku test');
 });
 const coinList = [  "BTC","ETH","USDT","BNB","ADA","XRP","USDC","DOGE","DOT","UNI","BUSD",
                    "LINK","BCH","SOL","LTC","WBTC","THETA","MATIC","ETC","XLM","LUNA","VET",
