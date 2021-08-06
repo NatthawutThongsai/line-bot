@@ -7,7 +7,22 @@ const fetch = require("node-fetch");
 const bodyParser = require("body-parser");
 // create LINE SDK client
 const client = new line.Client(config);
-
+///CONNECT TO FIREBASE
+const firebase = require("firebase/app")
+require("firebase/firestore")
+var firebaseConfig = {
+  apiKey: "AIzaSyCRE0-JQxCB1ay30WBVlBjFSMcvRzZf9dw",
+  authDomain: "line-bot-b61d5.firebaseapp.com",
+  projectId: "line-bot-b61d5",
+  storageBucket: "line-bot-b61d5.appspot.com",
+  messagingSenderId: "416924540295",
+  appId: "1:416924540295:web:82601f4533e4a045ac0722",
+  measurementId: "G-FKJXZXXESP"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+// Initialize Firestore
+let firestore = firebase.firestore()
 const app = express();
 
 //Here we are configuring express to use body-parser as middle-ware.
@@ -32,7 +47,15 @@ async function searchPrice(search){
     return results[0];
   
 }
-
+app.get('/firebase',(req,res)=>{
+  firestore.collection("cryptoPrice").add({ 
+    name: "ada",
+    price: 1.37666,
+    id: 1,
+    percent: 1.96
+});
+  res.send('complete');
+});
 
 // const rp = require('request-promise');
 // const url2 = 'https://xn--42cah7d0cxcvbbb9x.com/';
