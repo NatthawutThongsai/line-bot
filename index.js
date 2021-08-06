@@ -34,20 +34,20 @@ async function searchPrice(search){
 }
 
 
-const rp = require('request-promise');
-const url2 = 'https://xn--42cah7d0cxcvbbb9x.com/';
+// const rp = require('request-promise');
+// const url2 = 'https://xn--42cah7d0cxcvbbb9x.com/';
 
 
-app.get('/scraping',(req,res)=>{
-  rp(url2)
-  .then(function(html){
-    //success!
-    res.send(html);
-  })
-  .catch(function(err){
-    //handle error
-  });
-});
+// app.get('/scraping',(req,res)=>{
+//   rp(url2)
+//   .then(function(html){
+//     //success!
+//     res.send(html);
+//   })
+//   .catch(function(err){
+//     //handle error
+//   });
+// });
 app.get('/',(req,res)=>{
   res.send('heroku');
 });
