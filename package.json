@@ -1,15 +1,14 @@
 {
-  "name": "line-bot-nodejs-starter",
-  "version": "1.0.0",
-  "description": "starter point to create new line bot project",
+  "name": "line-bot",
+  "version": "1.0.11",
+  "description": "line bot project",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
   "keywords": [
     "line",
-    "bot",
-    "messaging-api"
+    "bot"
   ],
   "author": "Natthawut Thongsai",
   "license": "ESC",

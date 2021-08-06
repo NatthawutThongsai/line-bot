@@ -47,15 +47,24 @@ async function searchPrice(search){
     return results[0];
   
 }
-app.get('/firebase',(req,res)=>{
-  firestore.collection("cryptoPrice").add({ 
-    name: "ada",
-    price: 1.37666,
-    id: 1,
-    percent: 1.96
+app.get('/firebase/store',(req,res)=>{
+  firestore.collection("cryptoPrice").doc('btc').set({ 
+    name: "btc",
+    price: 40786.18574,
+    percent: 4.54
+  }).then(()=>{ 
+      res.send('complete');
+  }).catch((error)=>{ 
+      console.error(error) 
+  });
+  
 });
-  res.send('complete');
+app.get('/firebase/get',(req,res)=>{
+  firestore.collection("cryptoPrice").doc("btc").get().then(function(docs){
+    res.send(docs.data());
+  })
 });
+
 
 // const rp = require('request-promise');
 // const url2 = 'https://xn--42cah7d0cxcvbbb9x.com/';
