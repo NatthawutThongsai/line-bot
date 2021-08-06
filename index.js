@@ -25,17 +25,44 @@ async function searchPrice(search){
       for(var i=0; i<Object.values(json.data).length; i++) {
             if(json.data[i]['symbol']===toSearch.toUpperCase()||json.data[i]['name']===toSearch){
                 results.push(json.data[i]);
+                break;
             }
-          }
+        }
     })
     return results[0];
   
 }
+
+
+const rp = require('request-promise');
+const url2 = 'https://xn--42cah7d0cxcvbbb9x.com/';
+
+
+app.get('/scraping',(req,res)=>{
+  rp(url2)
+  .then(function(html){
+    //success!
+    res.send(html);
+  })
+  .catch(function(err){
+    //handle error
+  });
+});
 app.get('/',(req,res)=>{
   res.send('heroku');
 });
+const coinList = [  "BTC","ETH","USDT","BNB","ADA","XRP","USDC","DOGE","DOT","UNI","BUSD",
+                   "LINK","BCH","SOL","LTC","WBTC","THETA","MATIC","ETC","XLM","LUNA","VET",
+                    "ICP","DAI","FIL","TRX","AAVE","XMR","EOS","FTT","CAKE","CRO","GRT","MKR",
+                    "NEO","BTCB","LEO","ATOM","XTZ","KLAY","ALGO","BSV","AXS","AMP","COMP","MIOTA",
+                    "SHIB","AVAX","BTT","EGLD","QNT","UST","HBAR","KSM","RUNE","HT","DCR","WAVES",
+                    "TFUEL","DASH","STX","CHZ","XEM","ZEC","CEL","HNT","TUSD","MANA","OKB","YFI",
+                    "ENJ","SNX","SUSHI","HOT","FLOW","NEAR","NEXO","BAT","ZIL","BTG","XDC","TEL",
+                    "PAX","BNT","KCS","CELO","ONE","QTUM","VGX","SC","DGB","RVN","ZRX","ONT","ANKR",
+                    "MDX","ZEN","CHSB","ICX","FTM"];
 app.get('/test',(req,res)=>{
     var search = "ada";
+    res.send(coinList.includes(search.toUpperCase()));
     var results = searchPrice(search);
     results.then(function(result){
       console.log(result)
@@ -129,12 +156,13 @@ function handleEvent(event) {
 async function handleText(message, replyToken) {
 
   var search = message.text;
-  var results = await searchPrice(search);
-  if(results){
+  if(coinList.includes(search.toUpperCase())){
+    var results = await searchPrice(search);
+    console.log(results)
     return replyText(replyToken, results.symbol+"\nPrice: "+results.quote.USD.price.toFixed(5)+"\nPercent change 24hr: "+results.quote.USD.percent_change_24h.toFixed(2)+"%");
-  }else{
-    return replyText(replyToken, message.text);
   }
+  return replyText(replyToken, message.text);
+  
 }
 
 function handleImage(message, replyToken) {
